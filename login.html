@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | UDAN MART</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .auth-container {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+        }
+
+        .auth-box {
+            width: 100%;
+            max-width: 430px;
+            padding: 35px;
+            background: #1b1b1b;
+            border: 1px solid #383838;
+            border-radius: 16px;
+        }
+
+        .auth-box h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .auth-description {
+            color: #a4a49e;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .auth-box label {
+            display: block;
+            margin: 18px 0 8px;
+            font-size: 13px;
+        }
+
+        .auth-box input {
+            width: 100%;
+            padding: 13px;
+            margin-top: 8px;
+            background: #101010;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+        }
+
+        .auth-box input:focus {
+            border-color: #ffd000;
+        }
+
+        .auth-submit {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            background: #ffd000;
+            color: #111;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .auth-submit:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .auth-switch button {
+            background: none;
+            border: none;
+            color: #ffd000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .auth-message {
+            margin-top: 15px;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 22px;
+            color: #ffd000;
+            font-size: 13px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <a href="index.html" class="logo">
+        <span class="logo-icon">U</span>
+        <span>UDAN <strong>MART</strong>
+            <small>PARBALPUR, NALANDA</small>
+        </span>
+    </a>
+
+    <a href="index.html" class="login-button">Back to Home</a>
+</header>
+
+<main class="auth-container">
+
+    <section class="auth-box">
+
+        <p class="tagline">WELCOME TO UDAN MART</p>
+
+        <h1 id="form-title">Welcome Back!</h1>
+
+        <p class="auth-description" id="form-description">
+            Login to shop from your local stores.
+        </p>
+
+        <form id="auth-form">
+
+            <div id="name-field" class="hidden">
+                <label for="full-name">Full Name</label>
+                <input
+                    type="text"
+                    id="full-name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                >
+            </div>
+
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required
+            >
+
+            <label for="phone">Mobile Number</label>
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Enter your mobile number"
+                autocomplete="tel"
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="At least 6 characters"
+                minlength="6"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit" class="auth-submit" id="submit-button">
+                Login
+            </button>
+
+        </form>
+
+        <p class="auth-switch">
+            <span id="switch-description">Don't have an account?</span>
+            <button type="button" id="switch-button">Register</button>
+        </p>
+
+        <p class="auth-message" id="auth-message" role="status"></p>
+
+        <a href="index.html" class="back-home">
+            ← Continue shopping
+        </a>
+
+    </section>
+
+</main>
+
+<script>
+    let mode = "login";
+
+    const form = document.getElementById("auth-form");
+    const title = document.getElementById("form-title");
+    const description = document.getElementById("form-description");
+    const nameField = document.getElementById("name-field");
+    const fullName = document.getElementById("full-name");
+    const switchDescription = document.getElementById("switch-description");
+    const switchButton = document.getElementById("switch-button");
+    const submitButton = document.getElementById("submit-button");
+    const message = document.getElementById("auth-message");
+
+    switchButton.addEventListener("click", function () {
+        mode = mode === "login" ? "register" : "login";
+
+        const registering = mode === "register";
+
+        title.textContent = registering
+            ? "Create Account"
+            : "Welcome Back!";
+
+        description.textContent = registering
+            ? "Create an account to shop with UDAN MART."
+            : "Login to shop from your local stores.";
+
+        nameField.classList.toggle("hidden", !registering);
+        fullName.required = registering;
+
+        switchDescription.textContent = registering
+            ? "Already have an account?"
+            : "Don't have an account?";
+
+        switchButton.textContent = registering
+            ? "Login"
+            : "Register";
+
+        submitButton.textContent = registering
+            ? "Create Account"
+            : "Login";
+
+        document.getElementById("password").autocomplete =
+            registering ? "new-password" : "current-password";
+
+        message.textContent = "";
+    });
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        message.style.color = "#ffd000";
+
+        message.textContent =
+            "Login/Register abhi connect nahi hua hai. " +
+            "Real account banane ke liye next step mein Supabase " +
+            "authentication connect karna hoga.";
+    });
+</script>
+
+</body>
+</html>
