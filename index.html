@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UDAN MART | Parbalpur</title>
+    <meta name="description" content="Shop groceries and daily essentials in Parbalpur, Nalanda.">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" class="logo">
+            <span class="logo-icon">U</span>
+            <span>UDAN <strong>MART</strong><small>PARBALPUR, NALANDA</small></span>
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#products">Products</a>
+        </nav>
+
+        <div class="header-buttons">
+            <a href="login.html" class="login-button">Login</a>
+            <button class="cart-button" onclick="openCart()">
+                Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="tagline">YOUR LOCAL MARKET, ONLINE</p>
+                <h1>Shopping made easy.<br>
+                    <span>Delivered to your door.</span>
+                </h1>
+                <p class="hero-description">
+                    Discover groceries and daily essentials from your
+                    local shops in Parbalpur, Nalanda.
+                </p>
+                <a href="#products" class="primary-button">Start Shopping →</a>
+
+                <div class="hero-features">
+                    <div><strong>LOCAL</strong><small>Nearby Shops</small></div>
+                    <div><strong>EASY</strong><small>Simple Ordering</small></div>
+                    <div><strong>COD</strong><small>Cash on Delivery</small></div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="shopping-icon">🛒</div>
+                <div class="floating-card">🥦 Fresh Vegetables</div>
+                <div class="floating-card second-card">🥛 Daily Essentials</div>
+            </div>
+        </section>
+
+        <section class="delivery-info">
+            <div class="location-icon">⌖</div>
+            <div>
+                <h3>Serving Parbalpur</h3>
+                <p>Your local shopping destination in Nalanda, Bihar.</p>
+            </div>
+            <span class="delivery-badge">LAUNCHING SOON</span>
+        </section>
+
+        <section class="section" id="categories">
+            <p class="tagline">EXPLORE OUR STORE</p>
+            <h2>Shop by Category</h2>
+
+            <div class="category-grid">
+                <button class="category-card" onclick="filterProducts('All')">
+                    <span>🛍️</span><h3>All Products</h3>
+                </button>
+                <button class="category-card" onclick="filterProducts('Grocery')">
+                    <span>🌾</span><h3>Grocery</h3>
+                </button>
+                <button class="category-card" onclick="filterProducts('Vegetables')">
+                    <span>🥦</span><h3>Vegetables</h3>
+                </button>
+                <button class="category-card" onclick="filterProducts('Dairy')">
+                    <span>🥛</span><h3>Dairy</h3>
+                </button>
+                <button class="category-card" onclick="filterProducts('Snacks')">
+                    <span>🍪</span><h3>Snacks</h3>
+                </button>
+            </div>
+        </section>
+
+        <section class="section" id="products">
+            <p class="tagline">POPULAR CHOICES</p>
+            <h2>Our Products</h2>
+
+            <input type="search" id="search-input"
+                   placeholder="Search products..."
+                   oninput="searchProducts()">
+
+            <div class="product-grid" id="product-list"></div>
+        </section>
+
+        <section class="partner-section">
+            <div>
+                <p class="tagline">GROW YOUR BUSINESS</p>
+                <h2>Bring Your Shop Online</h2>
+                <p>Are you a local shopkeeper or delivery partner?
+                   Join UDAN MART and grow with us.</p>
+            </div>
+            <a href="register.html" class="primary-button">Join UDAN MART →</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <h3>UDAN <strong>MART</strong></h3>
+        <p>Local shopping, made simple.</p>
+        <p>© <span id="current-year"></span> UDAN MART, Parbalpur.</p>
+    </footer>
+
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-panel">
+            <button class="close-cart" onclick="closeCart()">×</button>
+            <h2>Your Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <h3>Total: <span id="cart-total">₹0</span></h3>
+            <button class="primary-button" onclick="checkout()">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
